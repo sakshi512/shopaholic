@@ -8,6 +8,13 @@ body {
     text-align: left;
     background-color: #fff;
 }
+
+.form{
+    border: 1px solid #82ae46;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin: auto;
+}
 .container {
     width: 100%;
     padding-right: 15px;
@@ -15,6 +22,8 @@ body {
     margin-right: auto;
     margin-left: auto;
 }
+
+
 .row {
     display: -webkit-box;
     display: -ms-flexbox;
