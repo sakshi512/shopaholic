@@ -3,6 +3,7 @@
 <head>
     <title>Test</title>
     <link th:href="@{/css/style.css}" rel="stylesheet" />
+    <script src="jsFunctions.js" ></script>
 </head>
 <body>
 
@@ -39,34 +40,23 @@
        <div class="row">
 
            <form method="post" th:object="${user}" th:action="@{/signup}">
-
-               <label>E-Mail</label><input type="text" th:field="${user.email}"><br>
-               <label>Password</label><input type="password" th:field="${user.password}"><br>
-              <label>First Name</label><input type="text"  th:field="${user.firstName}">
-               <br>
-               <label>Last Name</label><input type="text" th:field="${user.lastName}">
-               <br>
-               <label>Address Line 1</label><input type="text"  th:field="${user.addressLine1}">
-               <br>
-               <label>Address Line 2</label><input type="text" th:field="${user.addressLine2}">
-               <br>
-               <label>City</label><input type="text"  th:field="${user.city}" ><br>
-               <label>Pin</label><input type="text" th:field="${user.pin}" ><br>
-               <label>Phone Number</label><input type="text"  th:field="${user.phone}" ><br>
-
-               <label>Date Of Birth</label><input type="text" th:field="${user.dob}"><br>
-
-               <br><br>
-               <button name="btnAddUser" type="submit" value="1">Register</button>
+               <table cellpadding="4" align="center">
+                   <tr><td><label>E-Mail</label></td><td><input type="text" th:field="${user.email}"></td></tr>
+                   <tr><td><label>Password</label></td><td><input type="password" th:field="${user.password}" maxlength="10"></td></tr>
+                   <tr><td><label>First Name</label></td><td><input type="text"  th:field="${user.firstName}" maxlength="50"></td></tr>
+                   <tr><td><label>Last Name</label></td><td><input type="text" th:field="${user.lastName}" maxlength="50"></td></tr>
+                   <tr><td><label>Address Line 1</label></td><td><input type="text"  th:field="${user.addressLine1}" maxlength="100"></td></tr>
+                   <tr><td><label>Address Line 2</label></td><td><input type="text" th:field="${user.addressLine2}" maxlength="100"></td></tr>
+                   <tr><td><label>City</label></td><td><input type="text" th:field="${user.city}" maxlength="100"></td>
+                   <tr><td><label>Pin</label></td><td><input type="text" th:field="${user.pin}" maxlength="6" id="txtPin"></td></tr>
+                   <tr><td><label>Phone Number</label></td><td><input type="text"  th:field="${user.phone}" maxlength="12" pattern= "[0-9]"></td></tr>
+                   <tr><td><label>Date Of Birth</label></td><td><input type="text" th:field="${user.dob}" maxlength="10"><br></td></tr>
+                   <tr><td colspan="2"><button name="btnAddUser" type="submit" value="1">Register</button></td></tr>
+               </table>
            </form>
-
        </div>
     </div>
-
 </section>
-
-
-
 <footer>
     <div class="footer">
         Copyright &copy; Innovators.

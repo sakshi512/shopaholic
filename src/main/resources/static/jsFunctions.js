@@ -5,3 +5,5 @@ function addtoCart() {
     document.getElementById("cart").innerHTML = prevCount.toString();
 
 }
+
+
