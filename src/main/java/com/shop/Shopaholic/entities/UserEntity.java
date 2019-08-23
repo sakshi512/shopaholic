@@ -9,6 +9,10 @@ public class UserEntity
     @Id
     @Column(name="su_id")
     private int Id;
+
+    @Column(name="su_email")
+    private  String email;
+
     @Column(name="su_firstname")
     private String firstName;
 
@@ -39,8 +43,8 @@ public class UserEntity
     @Column(name="su_creationdate")
     private Date creationDate;
 
-    @Column(name="su_status")
-    private String status;
+//    @Column(name="su_status")
+//    private String status;
 
     // foreign key cons
     @Column(name="su_role")
@@ -134,13 +138,13 @@ public class UserEntity
         this.creationDate = creationDate;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
+//    public String getStatus() {
+//        return status;
+//    }
+//
+//    public void setStatus(String status) {
+//        this.status = status;
+//    }
 
     public int getRoleId() {
         return roleId;
@@ -157,9 +161,6 @@ public class UserEntity
     public void setEmail(String email) {
         this.email = email;
     }
-
-    @Column(name="su_email")
-    private  String email;
 
 
 }
