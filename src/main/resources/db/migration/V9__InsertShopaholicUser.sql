@@ -1,1 +1,1 @@
-INSERT INTO shopaholic_user VALUES('John','Brandon','5600 Broadway Street','Jersey City','New York',110085,'9876543210','test@gmail.com','test@gmail.com','1990-05-05',1,'20019-08-23');
+INSERT INTO shopaholic_user(su_firstname,su_lastname,su_addressline1,su_addressline2,su_city,su_pin,su_phone,su_email,su_password,su_dob,su_role,su_creationdate) VALUES('John','Brandon','5600 Broadway Street','Jersey City','New York',110085,'9876543210','test@gmail.com','test@gmail.com','1990-05-05',1,'20019-08-23');
