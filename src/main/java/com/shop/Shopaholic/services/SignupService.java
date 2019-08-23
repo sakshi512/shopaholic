@@ -18,6 +18,7 @@ public class SignupService
         objUser.setRoleId(1);
         LocalDate now = LocalDate.now();
         objUser.setCreationDate(now);
+        objUser.setDob(now);
         userRepository.save(objUser);
     }
 
