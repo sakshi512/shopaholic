@@ -1,0 +1,1 @@
+INSERT INTO shopaholic_user VALUES('John','Brandon','5600 Broadway Street','Jersey City','New York',110085,'9876543210','test@gmail.com','test@gmail.com','1990-05-05',1,'20019-08-23');
