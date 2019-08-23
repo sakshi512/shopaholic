@@ -131,7 +131,6 @@ public class UserEntity
     public void setDob(LocalDate dob)
     {
         this.dob = dob;
-        //this.dob = dob;
     }
 
     public LocalDate getCreationDate() {
@@ -142,6 +141,14 @@ public class UserEntity
 
         this.creationDate = creationDate;
     }
+
+//    public String getStatus() {
+//        return status;
+//    }
+//
+//    public void setStatus(String status) {
+//        this.status = status;
+//    }
 
     public int getRoleId() {
         return roleId;
@@ -158,4 +165,6 @@ public class UserEntity
     public void setEmail(String email) {
         this.email = email;
     }
+
+
 }

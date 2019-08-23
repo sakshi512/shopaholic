@@ -8,6 +8,13 @@ body {
     text-align: left;
     background-color: #fff;
 }
+
+.form{
+    border: 1px solid #82ae46;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin: auto;
+}
 .container {
     width: 100%;
     padding-right: 15px;
@@ -15,6 +22,8 @@ body {
     margin-right: auto;
     margin-left: auto;
 }
+
+
 .row {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -143,7 +152,7 @@ body {
     color: #000000; }
 .product .text p.price {
     margin-bottom: 0;
-    color: #82ae46;
+    color: #82ae46 !important;
     font-weight: 400; }
 .product .text p.price span.price-dc {
     text-decoration: line-through;
@@ -288,4 +297,14 @@ a:hover {
 }
 .logo{
     float: left;
+}
+.cart{
+    float: right;
+    margin-right: 25px;
+    margin-top: 30px;
+    width: 80px;
+}
+#cart{
+    color:#82ae46;
+    vertical-align: top;
 }

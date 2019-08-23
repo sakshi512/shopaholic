@@ -3,6 +3,7 @@
 <head>
 	<title>Test</title>
 	<link th:href="@{/css/style.css}" rel="stylesheet" />
+	<script src="jsFunctions.js" ></script>
 </head>
 <body>
 
@@ -24,8 +25,8 @@
 	<div class="container">
 		<a class="navbar-brand" href="#">ShopaHolic</a>
 
-		<div class="collapse navbar-collapse" id="ftco-nav">
-
+		<div class="cart">
+			<img th:src="@{/images/cart.png}" /><span id="cart" >0</span>
 
 		</div>
 	</div>
@@ -37,59 +38,22 @@
 
 	<div class="container">
 		<div class="row">
-			<div class="col-md-6 col-lg-3 ftco-animate">
-				<div class="product">
-					<a href="#" class="img-prod">Image will go here
 
-						<div class="overlay"></div>
-					</a>
-					<div class="text py-3 pb-4 px-3 text-center">
-						<h3><a href="#">Product1</a></h3>
-						<div class="d-flex">
-							<div class="pricing">
-								<p class="price"><span class="price-sale">price</span></p>
-							</div>
-						</div>
-						<div class="bottom-area d-flex px-3">
-							<div class="m-auto d-flex">
-								<a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
-									<span><i class="ion-ios-menu"></i></span>
-								</a>
-								<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
-									<span><i class="ion-ios-cart"></i></span>
-								</a>
-								<a href="#" class="heart d-flex justify-content-center align-items-center ">
-									<span><i class="ion-ios-heart"></i></span>
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6 col-lg-3 ftco-animate">
+			<div class="col-md-6 col-lg-3 ftco-animate" th:each="product: ${products}">
 				<div class="product">
-					<a href="#" class="img-prod">image will go here
-						<div class="overlay"></div>
-					</a>
+
 					<div class="text py-3 pb-4 px-3 text-center">
-						<h3><a href="#">Product2</a></h3>
+
+
+						<img  th:src="@{${'/images/' + product.getProductImage() }}" width="90" height="90" alt="No Image Available">
+						<h3><a href="#" th:text="${product.getProductName()}">ProductName</a></h3>
 						<div class="d-flex">
 							<div class="pricing">
-								<p class="price"><span>Price</span></p>
+								<p class="price" th:text="${product.getProductPrice()}"><span>Price</span></p>
 							</div>
 						</div>
-						<div class="bottom-area d-flex px-3">
-							<div class="m-auto d-flex">
-								<a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
-									<span><i class="ion-ios-menu"></i></span>
-								</a>
-								<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
-									<span><i class="ion-ios-cart"></i></span>
-								</a>
-								<a href="#" class="heart d-flex justify-content-center align-items-center ">
-									<span><i class="ion-ios-heart"></i></span>
-								</a>
-							</div>
+						<div >
+							<button onclick="addtoCart()">Buy</button>
 						</div>
 					</div>
 				</div>
