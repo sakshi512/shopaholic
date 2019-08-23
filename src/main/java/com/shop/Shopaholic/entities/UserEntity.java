@@ -1,14 +1,17 @@
 package com.shop.Shopaholic.entities;
 import javax.persistence.*;
-import java.util.Date;
+import javax.validation.constraints.Email;
+import java.time.LocalDate;
 
 @Entity
 @Table(name="shopaholic_user")
 public class UserEntity
 {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="su_id")
-    private int Id;
+    private int id;
+
     @Column(name="su_firstname")
     private String firstName;
 
@@ -34,31 +37,34 @@ public class UserEntity
     private String password;
 
     @Column(name="su_dob")
-    private Date dob;
+    private LocalDate dob;
 
     @Column(name="su_creationdate")
-    private Date creationDate;
-
-    @Column(name="su_status")
-    private String status;
+    private LocalDate creationDate;
 
     // foreign key cons
     @Column(name="su_role")
     private int roleId;
 
+    @Email
+    @Column(name="su_email")
+    private  String email;
+
     public int getId() {
-        return Id;
+        return id;
     }
 
     public void setId(int id) {
-        Id = id;
+        this.id =id;
     }
 
     public String getFirstName() {
+        System.out.println("in first name getter");
         return firstName;
     }
 
     public void setFirstName(String firstName) {
+        System.out.println("in first name setter");
         this.firstName = firstName;
     }
 
@@ -118,28 +124,23 @@ public class UserEntity
         this.password = password;
     }
 
-    public Date getDob() {
+    public LocalDate getDob() {
         return dob;
     }
 
-    public void setDob(Date dob) {
+    public void setDob(LocalDate dob)
+    {
         this.dob = dob;
+        //this.dob = dob;
     }
 
-    public Date getCreationDate() {
+    public LocalDate getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(Date creationDate) {
+    public void setCreationDate(LocalDate creationDate) {
+
         this.creationDate = creationDate;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public int getRoleId() {
@@ -157,9 +158,4 @@ public class UserEntity
     public void setEmail(String email) {
         this.email = email;
     }
-
-    @Column(name="su_email")
-    private  String email;
-
-
 }
