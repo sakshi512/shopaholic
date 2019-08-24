@@ -28,7 +28,7 @@ public class UserEntity
     private String city;
 
     @Column(name="su_pin")
-    private int pin;
+    private Integer pin;
 
     @Column(name="su_phone")
     private String phone;
@@ -100,11 +100,11 @@ public class UserEntity
         this.city = city;
     }
 
-    public int getPin() {
+    public Integer getPin() {
         return pin;
     }
 
-    public void setPin(int pin) {
+    public void setPin(Integer pin) {
         this.pin = pin;
     }
 
