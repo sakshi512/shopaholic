@@ -5,6 +5,7 @@
 	<link th:href="@{/css/style.css}" rel="stylesheet" />
 	<script src="jsFunctions.js" ></script>
 </head>
+
 <body>
 
 <div th:replace="${loggedInUserId == null} ? ~{/header::header} : ~{/headerLoggedIn::headerLoggedIn}"></div>

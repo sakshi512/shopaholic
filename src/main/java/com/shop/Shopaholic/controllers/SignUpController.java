@@ -9,7 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class SignUpController
@@ -30,17 +31,17 @@ public class SignUpController
     }
 
     @PostMapping("/signup")
-    public String welcomeUser(@ModelAttribute("user") UserEntity user) throws Exception{
+    public String welcomeUser(@ModelAttribute("user") UserEntity user, HttpSession httpSession) throws Exception{
         try {
             signupService.addUser(user);
-            System.out.println("in Welcome");
+            httpSession.setAttribute("user",user);
+            httpSession.setAttribute("loggedInUserId",user.getId());
 
         }
         catch (Exception e)
         {
             System.out.println(ErrorCodes.SIGN_UP_CONTROLLER.getErrorDescription());
         }
-        //return "redirect:userprofile";
         return "redirect:index";
     }
 }
