@@ -2,6 +2,7 @@ package com.shop.Shopaholic.controllers;
 
 import com.shop.Shopaholic.entities.UserEntity;
 import com.shop.Shopaholic.services.SignupService;
+import com.shop.Shopaholic.utilities.ErrorCodes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,11 +31,17 @@ public class SignUpController
     }
 
     @PostMapping("/signup")
-    public String welcomeUser(@ModelAttribute("user") UserEntity user)
-    {
-        signupService.addUser(user);
-        System.out.println("in Welcome");
-        return "userprofile";
+    public String welcomeUser(@ModelAttribute("user") UserEntity user) throws Exception{
+        try {
+            signupService.addUser(user);
+            System.out.println("in Welcome");
 
+        }
+        catch (Exception e)
+        {
+            System.out.println(ErrorCodes.SIGN_UP_CONTROLLER.getErrorDescription());
+        }
+        //return "redirect:userprofile";
+        return "redirect:index";
     }
 }

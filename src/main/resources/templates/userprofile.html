@@ -1,10 +1,48 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thyleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>User Profile</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <h2>Welcome user!</h2>-->
+<!--</body>-->
+<!--</html>-->
+
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thyleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>User Profile</title>
+    <title>Users</title>
 </head>
 <body>
-    <h2>Welcome user!</h2>
+<h1>Show User</h1>
+
+<table>
+    <thead>
+    <tr>
+        <!--        <th th:text="#{movies.movieName}"></th>-->
+        <!--        <th th:text="#{movies.movieDirector}"></th>-->
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${user}">
+        <tr><td><label>Id</label></td><td th:text="${user.id}"></td></tr>
+        <tr><td><label>First Name</label></td><td th:text="${user.firstName}"></td></tr>
+        <tr><td><label>Last Name</label></td><td th:text="${user.lastName}"></td></tr>
+        <tr><td><label>Address1</label></td><td th:text="${user.addressLine1}"></td></tr>
+        <tr><td><label>Address2</label></td><td th:text="${user.addressLine2}"></td></tr>
+        <tr><td><label>City</label></td><td th:text="${user.city}"></td></tr>
+        <tr><td><label>Pin</label></td><td th:text="${user.pin}"></td></tr>
+        <tr><td><label>Phone</label></td><td th:text="${user.phone}"></td></tr>
+        <tr><td><label>Password</label></td><td th:text="${user.password}"></td></tr>
+        <tr><td><label>DOB</label></td><td th:text="${user.dob}"></td></tr>
+        <tr><td><label>Creation Date</label></td><td th:text="${user.creationDate}"></td></tr>
+        <tr><td><label>RoleId</label></td><td th:text="${user.roleId}"></td></tr>
+
+    </tr>
+    </tbody>
+</table>
+
 </body>
 </html>

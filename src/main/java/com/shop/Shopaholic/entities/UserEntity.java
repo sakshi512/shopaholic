@@ -125,12 +125,12 @@ public class UserEntity
     }
 
     public LocalDate getDob() {
+        System.out.println("In get DOB = "+dob);
         return dob;
     }
 
-    public void setDob(LocalDate dob)
-    {
-
+    public void setDob(LocalDate dob) {
+        System.out.println("In set DOB = "+dob);
         this.dob = dob;
     }
 
