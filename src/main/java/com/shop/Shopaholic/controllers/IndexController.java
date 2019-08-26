@@ -5,32 +5,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-import com.shop.Shopaholic.entities.ProductsEntity;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import java.io.IOException;
 import java.util.List;
 
 @Controller
+@SessionAttributes("loggedInUserId")
 public class IndexController {
 
-
     ProductListImplService productListImplService ;
-
 
     @Autowired
     public IndexController(ProductListImplService productListImplService) {
         this.productListImplService = productListImplService;
     }
 
-
-
-      @GetMapping("/index")
+     @GetMapping("/index")
      public String getHomePage(Model model) {
-     model.addAttribute("products",productListImplService.findAllProducts());
-    System.out.println("index");
-    return "index";
-    }
+        model.addAttribute("products",productListImplService.findAllProducts());
+        if(!model.containsAttribute("loggedInUserId"))
+            model.addAttribute("loggedInUserId", null);
+        return "index";
+     }
 
 
 //    @GetMapping("/showProductList")
