@@ -33,7 +33,7 @@ public class LoginController {
         if(loggedInUser.isPresent()) {
             httpSession.setAttribute("user",loggedInUser.get());
             httpSession.setAttribute("loggedInUserId",loggedInUser.get().getId());
-            return "redirect:index";
+            return (loggedInUser.get().getRoleId()==2)?"adminLoginSuccess" : "redirect:index";
         } else{
             return "redirect:login";
         }
