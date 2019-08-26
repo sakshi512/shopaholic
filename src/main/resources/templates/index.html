@@ -41,7 +41,7 @@
 							</div>
 						</div>
 						<div >
-							<button th:if="${loggedInUserId != null}"  th:onclick="'javascript:addtoCart(\'' + ${product.getProductId()} + '\',\'' + ${product.getProductId()} + '\');'">Buy</button>
+							<button th:if="${loggedInUserId != null}"  th:onclick="'javascript:addtoCart(\'' + ${loggedInUserId} + '\',\'' + ${product.getProductId()} + '\');'">Buy</button>
 
 							<!--<p class="price" th:if="${loggedInUserId != null}" th:text="${loggedInUserId}"><span>session1 not</span></p>-->
 						</div>

@@ -7,7 +7,7 @@
 </head>
 <body>
 <div class="py-1 bg-primary">
-    <div class="container">
+    <div class="container loginContainer">
         <div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
             <div class="col-lg-12 d-block">
                 <div class="row d-flex">
@@ -32,22 +32,37 @@
 </nav>
 <!-- END nav -->
 
-
 <section class="ftco-section" style="min-height: 550px;">
-    <form class="form"  th:action="@{/loginUser}" th:object="${user}" method="post">
+    <form class="form"  th:action="@{/login}" th:object="${user}" method="post">
         <div class="container">
-            <div class="text py-3 pb-4 px-3 text-center">
-                <label><b>Username</b></label>
-                <input type="text" placeholder="Enter Email-Id" name="username" th:field="${user.email}" required />
-            </div>
-            <div class="text py-3 pb-4 px-3 text-center">
-                <label><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="password" th:field="${user.password}" required />
-            </div>
-            <div class="text py-3 pb-4 px-3 text-center">
-                <button type="submit">Login</button>
-                <button type="button">Cancel</button>
-            </div>
+
+            <table style="align:center">
+
+                <tr>
+                    <td><label><b>Username</b></label></td>
+                    <td>
+                        <input type="text" placeholder="Enter Email-Id" name="username" th:field="${user.userName}" required />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><label><b>Password</b></label></td>
+                    <td>
+                        <input type="password" placeholder="Enter Password" name="password" th:field="${user.password}" required />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td>
+                        <div>
+                            <button type="submit">Login</button>
+                            <button type="button">Cancel</button>
+                        </div>
+                    </td>
+                </tr>
+
+            </table>
             <div>
                 <label>
                     <input type="checkbox" checked="checked" name="remember"> Remember me

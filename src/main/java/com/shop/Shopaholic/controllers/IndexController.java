@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.List;
 
 @Controller
-@SessionAttributes("loggedInUserId")
+@SessionAttributes({"loggedInUserId", "user"})
 public class IndexController {
 
     ProductListImplService productListImplService ;
@@ -26,6 +26,8 @@ public class IndexController {
         model.addAttribute("products",productListImplService.findAllProducts());
         if(!model.containsAttribute("loggedInUserId"))
             model.addAttribute("loggedInUserId", null);
+         if(!model.containsAttribute("user"))
+             model.addAttribute("user", null);
         return "index";
      }
 

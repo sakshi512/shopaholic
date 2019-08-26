@@ -1,5 +1,6 @@
 package com.shop.Shopaholic.controllers;
 
+import com.shop.Shopaholic.entities.LoginEntity;
 import com.shop.Shopaholic.entities.UserEntity;
 import com.shop.Shopaholic.services.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import javax.servlet.http.HttpSession;
+import java.util.Optional;
 
 @Controller
 public class LoginController {
@@ -17,18 +20,32 @@ public class LoginController {
 
     @GetMapping("/login")
     public String getLoginForm(Model model){
-        UserEntity user = new UserEntity();
+        LoginEntity user = new LoginEntity();
         model.addAttribute("user", user);
         return "loginForm";
     }
 
-    @PostMapping("/loginUser")
-    public String loginUser(@ModelAttribute("user") UserEntity loginUser)
+    @PostMapping("/login")
+    public String doUserLogin(@ModelAttribute("user") LoginEntity user, HttpSession httpSession)
     {
-        if(loginService.validateUser(loginUser))
-            return "loginSuccessPage";
-        else
+        Optional<UserEntity> loggedInUser = loginService.validateUser(user);
+
+        if(loggedInUser.isPresent()) {
+            httpSession.setAttribute("user",loggedInUser.get());
+            httpSession.setAttribute("loggedInUserId",loggedInUser.get().getId());
+            return "redirect:index";
+        } else{
             return "redirect:login";
+        }
+
+    }
+
+    @GetMapping("/logout")
+    public String doUserLogout(HttpSession httpSession){
+        if (httpSession != null) {
+            httpSession.invalidate();
+        }
+        return "redirect:index";
     }
 
 }
