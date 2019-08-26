@@ -9,8 +9,6 @@ import org.springframework.stereotype.Service;
 import java.text.ParseException;
 import java.time.LocalDate;
 
-import static com.shop.Shopaholic.utilities.Password.encryptThisString;
-
 
 @Service
 public class SignupService
@@ -20,9 +18,9 @@ public class SignupService
 
     public void addUser(UserEntity objUser) throws ParseException {
         /* Encrypt password before adding it to database - start */
-        String encrptedPassword = encryptThisString(objUser.getPassword());
+        //String encrptedPassword = encryptThisString(objUser.getPassword());
 //        System.out.println("Encrypted password = " +encrptedPassword);
-        objUser.setPassword(encrptedPassword);
+        //objUser.setPassword(encrptedPassword);
         /* Encrypt password before adding it to database - end */
 
         objUser.setRoleId(RoleTypes.valueOf("USERS").ordinal());
