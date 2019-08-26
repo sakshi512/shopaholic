@@ -2,11 +2,12 @@ package com.shop.Shopaholic.services;
 
 import com.shop.Shopaholic.entities.UserEntity;
 import com.shop.Shopaholic.repository.UserRepository;
+import com.shop.Shopaholic.utilities.Password;
 import com.shop.Shopaholic.utilities.RoleTypes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.ParseException;
+import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 
 
@@ -16,11 +17,11 @@ public class SignupService
     @Autowired
     private UserRepository userRepository;
 
-    public void addUser(UserEntity objUser) throws ParseException {
+    public void addUser(UserEntity objUser) throws NoSuchAlgorithmException {
         /* Encrypt password before adding it to database - start */
-        //String encrptedPassword = encryptThisString(objUser.getPassword());
-//        System.out.println("Encrypted password = " +encrptedPassword);
-        //objUser.setPassword(encrptedPassword);
+        String encrptedPassword = Password.encryptThisStringWithSameSalt(objUser.getPassword());
+        System.out.println("Encrypted password = " +encrptedPassword);
+        objUser.setPassword(encrptedPassword);
         /* Encrypt password before adding it to database - end */
 
         objUser.setRoleId(RoleTypes.valueOf("USERS").ordinal());
