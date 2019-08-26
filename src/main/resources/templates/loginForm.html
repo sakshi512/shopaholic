@@ -6,23 +6,12 @@
     <link th:href="@{/css/style.css}" rel="stylesheet" />
 </head>
 <body>
-<div class="py-1 bg-primary">
-    <div class="container loginContainer">
-        <div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
-            <div class="col-lg-12 d-block">
-                <div class="row d-flex">
-                    <div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right">
-                        <span class="text">SignUp</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
+<div th:replace="/header::header"></div>
 
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
-        <a class="navbar-brand" href="#">ShopaHolic - Login Page</a>
+        <a class="navbar-brand" href="/index">ShopaHolic</a>
 
         <div class="collapse navbar-collapse" id="ftco-nav">
 
@@ -51,7 +40,6 @@
                         <input type="password" placeholder="Enter Password" name="password" th:field="${user.password}" required />
                     </td>
                 </tr>
-
                 <tr>
                     <td></td>
                     <td>
@@ -61,24 +49,12 @@
                         </div>
                     </td>
                 </tr>
-
             </table>
-            <div>
-                <label>
-                    <input type="checkbox" checked="checked" name="remember"> Remember me
-                </label>
-            </div>
         </div>
     </form>
 </section>
 
-
-
-<footer>
-    <div class="footer">
-        Copyright &copy; Innovators.
-    </div>
-</footer>
+<div th:replace="/footer::footer"></div>
 
 </body>
 </html>
