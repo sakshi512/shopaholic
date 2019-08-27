@@ -37,10 +37,10 @@
 <section class="ftco-section" style="min-height: 550px;">
 
     <div class="container">
+        <span class="error" th:text="${errorMsg}"/>
        <div class="row">
-
-           <form method="post" th:object="${user}" th:action="@{/signup}" onsubmit="return validateForm()" >
-               <table cellpadding="4" align="center">
+           <form method="post" th:object="${user}" class='form' th:action="@{/signup}" style='margin: 0px'onsubmit="return validateForm()" >
+               <table cellpadding="4">
                    <tr><td><label>E-Mail *</label></td><td><input type="email" title="Email must have @ and .com field" th:field="${user.email}" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,}" id="email" required></td></tr>
                    <tr><td><label>Password *</label></td><td><input type="password" title="Please enter atleast 8 characters" th:field="${user.password}" maxlength="10" id="password" required > </td></tr>
                    <tr><td><label>First Name *</label></td><td><input type="text" name="fname" id="fname" th:field="${user.firstName}" maxlength="50" required ></td></tr>

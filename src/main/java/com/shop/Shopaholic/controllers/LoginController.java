@@ -3,6 +3,7 @@ package com.shop.Shopaholic.controllers;
 import com.shop.Shopaholic.entities.LoginEntity;
 import com.shop.Shopaholic.entities.UserEntity;
 import com.shop.Shopaholic.services.LoginService;
+import com.shop.Shopaholic.utilities.ErrorCodes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,7 +33,7 @@ public class LoginController {
     public String doUserLogin(@ModelAttribute("user") LoginEntity user, HttpSession httpSession, RedirectAttributes attributes) throws NoSuchAlgorithmException, UnsupportedEncodingException {
         Optional<UserEntity> validUser = loginService.validateUser(user);
         if(!validUser.isPresent()){
-            attributes.addFlashAttribute("errorMsg","Invalid Credentials!!");
+            attributes.addFlashAttribute("errorMsg", ErrorCodes.INVALID_CREDENTIALS.getErrorDescription());
             return "redirect:login";
         }
 
