@@ -21,7 +21,7 @@
     </div>
 </div>
 <div class="container" style="min-height: 550px;">
-   <h1>Welcome Admin - <span th:text="${session.user.getFirstName()}"/> </h1>
+   <h1>Welcome Admin - <span th:text="${session.admin.getFirstName()}"/> </h1>
    <form th:action="@{/logout}" method="get">
        <input type="submit" value="Logout"/>
    </form>

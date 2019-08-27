@@ -1,7 +1,6 @@
 package com.shop.Shopaholic.repository;
 
 import com.shop.Shopaholic.entities.UserEntity;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

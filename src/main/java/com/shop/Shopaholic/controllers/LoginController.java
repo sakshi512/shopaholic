@@ -6,6 +6,7 @@ import com.shop.Shopaholic.services.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,17 +29,28 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public String doUserLogin(@ModelAttribute("user") LoginEntity user, HttpSession httpSession) throws UnsupportedEncodingException, NoSuchAlgorithmException {
-        Optional<UserEntity> loggedInUser = loginService.validateUser(user);
-
-        if(loggedInUser.isPresent()) {
-            httpSession.setAttribute("user",loggedInUser.get());
-            httpSession.setAttribute("loggedInUserId",loggedInUser.get().getId());
-            return (loggedInUser.get().getRoleId()==2)?"adminLoginSuccess" : "redirect:index";
-        } else{
+    public String doUserLogin(@ModelAttribute("user") LoginEntity user, HttpSession httpSession, ModelMap modelMap) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+        Optional<UserEntity> validUser = loginService.validateUser(user);
+        if(!validUser.isPresent()){
+            modelMap.addAttribute("errorMsg","Invalid Credentials!! Kindly check username/password");
             return "redirect:login";
         }
 
+        UserEntity loggedInUser = validUser.get();
+
+        if(loginService.isAdminUser(loggedInUser.getRoleId())){
+            httpSession.setAttribute("admin",loggedInUser);
+            return "redirect:admin";
+        } else {
+            httpSession.setAttribute("user",loggedInUser);
+            return "redirect:index";
+        }
+
+    }
+
+    @GetMapping("/admin")
+    public String getAdminHomePage(){
+        return "admin";
     }
 
     @GetMapping("/logout")

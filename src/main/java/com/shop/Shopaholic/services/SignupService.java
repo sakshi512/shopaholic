@@ -25,7 +25,7 @@ public class SignupService
         objUser.setPassword(encrptedPassword);
         /* Encrypt password before adding it to database - end */
 
-        objUser.setRoleId(RoleTypes.valueOf("USERS").ordinal());
+        objUser.setRoleId(RoleTypes.valueOf("USERS").getIndex());
         LocalDate now = LocalDate.now();
         objUser.setCreationDate(now);
 //        SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");

@@ -7,8 +7,9 @@
 </head>
 
 <body>
+<span text="${user == null}"/>
 
-<div th:replace="${loggedInUserId == null} ? ~{/header::header} : ~{/headerLoggedIn::headerLoggedIn}"></div>
+<div th:replace="${user == null} ? ~{/header::header} : ~{/headerLoggedIn::headerLoggedIn}"></div>
 
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	<div class="container">
