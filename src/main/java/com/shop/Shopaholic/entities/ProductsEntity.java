@@ -1,6 +1,6 @@
 package com.shop.Shopaholic.entities;
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 
 
 @Entity
@@ -8,6 +8,7 @@ import java.util.Date;
 public class ProductsEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "p_id")
     private int productId;
 
@@ -33,7 +34,7 @@ public class ProductsEntity {
     private String productColor;
 
     @Column(name = "p_creationdate")
-    private Date productCreationDate;
+    private LocalDate productCreationDate;
 
     public int getProductId() {
         return productId;
@@ -99,11 +100,11 @@ public class ProductsEntity {
         this.productColor = productColor;
     }
 
-    public Date getProductCreationDate() {
+    public LocalDate getProductCreationDate() {
         return productCreationDate;
     }
 
-    public void setProductCreationDate(Date productCreationDate) {
+    public void setProductCreationDate(LocalDate productCreationDate) {
         this.productCreationDate = productCreationDate;
     }
 

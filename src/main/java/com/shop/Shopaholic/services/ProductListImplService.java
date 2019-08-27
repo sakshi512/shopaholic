@@ -5,6 +5,7 @@ import com.shop.Shopaholic.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -20,5 +21,13 @@ public class ProductListImplService implements ProductsService {
     @Override
     public List<ProductsEntity> findAllProducts() {
         return productRepository.findAll();
+    }
+
+    @Override
+    public void addProduct(ProductsEntity productsEntity)
+    {
+        LocalDate now = LocalDate.now();
+        productsEntity.setProductCreationDate(now);
+        productRepository.save(productsEntity);
     }
 }
