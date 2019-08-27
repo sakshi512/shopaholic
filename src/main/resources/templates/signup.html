@@ -52,7 +52,7 @@
                    <tr><td><label>City *</label></td><td><input type="text" th:field="${user.city}" maxlength="100" id="city" required></td>
                    <tr><td><label>Pin *</label></td><td><input type="text" th:field="${user.pin}" maxlength="6" id="txtPin" pattern="^\d{6}$" title="Please enter 6 digit number only" required ></td></tr>
                    <tr><td><label>Phone Number *</label></td><td><input type="tel" title="Please enter 10 digit number only" th:field="${user.phone}" maxlength="10" id="txtPhone" pattern="^\d{10}$" required></td></tr>
-<!--                   <tr><td><label>Date Of Birth *</label></td><td><input type="text" title="Please enter dob in DD/MM/YYYY format" th:field="${user.dob}" maxlength="10" pattern="\d{1,2}/\d{1,2}/\d{4}" required><br></td></tr>-->
+<!--                  <tr><td><label>Date Of Birth *</label></td><td><input type="text" title="Please enter dob in DD/MM/YYYY format" th:field="${user.dob}" maxlength="10" pattern="\d{1,2}/\d{1,2}/\d{4}" required><br></td></tr>-->
                    <tr><td colspan="2"><button name="btnAddUser" type="submit" value="1">Register</button></td></tr>
                </table>
            </form>
