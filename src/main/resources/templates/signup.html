@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thyleaf.org">
 <head>
-    <title>Test</title>
+    <title>User Sign Up</title>
     <link th:href="@{/css/style.css}" rel="stylesheet" />
-    <script src="jquery.min.js"></script>
-    <script src="jquery.validate.min.js"></script>
     <script src="jsFunctions.js" ></script>
 </head>
 <body>
@@ -25,8 +23,8 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
+        <!--<a class="navbar-brand" href="#">ShopaHolic</a>-->
         <a class="navbar-brand" href="/index">ShopaHolic</a>
-
         <div class="collapse navbar-collapse" id="ftco-nav">
 
 
@@ -40,10 +38,10 @@
 
     <div class="container">
        <div class="row">
-<!--           onsubmit="return validateForm()"-->
-           <form method="post" name="signup" th:object="${user}" th:action="@{/signup}" >
+
+           <form method="post" th:object="${user}" th:action="@{/signup}" onsubmit="return validateForm()" >
                <table cellpadding="4" align="center">
-                   <tr><td><label>E-Mail *</label></td><td><input type="email" th:field="${user.email}" id="email" required></td></tr>
+                   <tr><td><label>E-Mail *</label></td><td><input type="email" title="Email must have @ and .com field" th:field="${user.email}" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,}" id="email" required></td></tr>
                    <tr><td><label>Password *</label></td><td><input type="password" title="Please enter atleast 8 characters" th:field="${user.password}" maxlength="10" id="password" required > </td></tr>
                    <tr><td><label>First Name *</label></td><td><input type="text" name="fname" id="fname" th:field="${user.firstName}" maxlength="50" required ></td></tr>
                    <tr><td><label>Last Name *</label></td><td><input type="text" name="lname" id="lname" th:field="${user.lastName}" maxlength="50" required></td></tr>
@@ -53,7 +51,9 @@
                    <tr><td><label>Pin *</label></td><td><input type="text" th:field="${user.pin}" maxlength="6" id="txtPin" pattern="^\d{6}$" title="Please enter 6 digit number only" required ></td></tr>
                    <tr><td><label>Phone Number *</label></td><td><input type="tel" title="Please enter 10 digit number only" th:field="${user.phone}" maxlength="10" id="txtPhone" pattern="^\d{10}$" required></td></tr>
 <!--                  <tr><td><label>Date Of Birth *</label></td><td><input type="text" title="Please enter dob in DD/MM/YYYY format" th:field="${user.dob}" maxlength="10" pattern="\d{1,2}/\d{1,2}/\d{4}" required><br></td></tr>-->
-                   <tr><td colspan="2"><button name="btnAddUser" type="submit" value="1">Register</button></td></tr>
+                   <tr><td colspan="1"><button name="btnAddUser" type="submit" value="1">Register</button></td>
+                       <!--                   <td colspan="2"><span class="text"><a href="/index">Cancel</a></span></td></tr>-->
+                       <td colspan="1"> <input type="button" onclick="location.href='/index'" value="Cancel" ></td></tr>
                </table>
            </form>
        </div>

@@ -7,6 +7,7 @@ import com.shop.Shopaholic.utilities.RoleTypes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 
@@ -17,17 +18,16 @@ public class SignupService
     @Autowired
     private UserRepository userRepository;
 
-    public void addUser(UserEntity objUser) throws NoSuchAlgorithmException {
+    public void addUser(UserEntity objUser) throws NoSuchAlgorithmException, UnsupportedEncodingException {
         /* Encrypt password before adding it to database - start */
-        String encrptedPassword = Password.encryptThisStringWithSameSalt(objUser.getPassword());
-        System.out.println("Encrypted password = " +encrptedPassword);
+        String encrptedPassword = Password.hashPassword(objUser.getPassword());
+        //System.out.println("Encrypted password = " +encrptedPassword);
         objUser.setPassword(encrptedPassword);
         /* Encrypt password before adding it to database - end */
 
         objUser.setRoleId(RoleTypes.valueOf("USERS").ordinal());
         LocalDate now = LocalDate.now();
         objUser.setCreationDate(now);
-
 //        SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
 //        String dobStr = format1.format(objUser.getDob());
 //        LocalDate parsedDOB = format1.
@@ -38,7 +38,6 @@ public class SignupService
 //                .toLocalDate();
 //        System.out.println("DOB = "+localDate);
         objUser.setDob(now);
-
         userRepository.save(objUser);
     }
 

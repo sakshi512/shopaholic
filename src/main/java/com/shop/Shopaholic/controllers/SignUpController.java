@@ -18,10 +18,6 @@ public class SignUpController
     @Autowired
     private SignupService signupService;
 
-//    public SignUpController(SignupService signupService) {
-//        this.signupService = signupService;
-//    }
-
     @GetMapping("/signup")
     public String signupUser(Model model)
     {
@@ -36,11 +32,10 @@ public class SignUpController
             signupService.addUser(user);
             httpSession.setAttribute("user",user);
             httpSession.setAttribute("loggedInUserId",user.getId());
-
         }
         catch (Exception e)
         {
-            System.out.println(ErrorCodes.SIGN_UP_CONTROLLER.getErrorDescription());
+            System.out.println(ErrorCodes.SIGN_UP_CONTROLLER_INVALID_INPUT.getErrorDescription());
         }
         return "redirect:index";
     }

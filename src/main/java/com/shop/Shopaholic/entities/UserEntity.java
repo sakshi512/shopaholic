@@ -4,7 +4,7 @@ import javax.validation.constraints.Email;
 import java.time.LocalDate;
 
 @Entity
-@Table(name="shopaholic_user")
+@Table(name="shopaholic_user", uniqueConstraints = {@UniqueConstraint(columnNames = {"su_email"})})
 public class UserEntity
 {
     @Id
@@ -46,7 +46,7 @@ public class UserEntity
     @Column(name="su_role")
     private int roleId;
 
-    @Email
+    @Email(message = "Email invalid")
     @Column(name="su_email")
     private  String email;
 

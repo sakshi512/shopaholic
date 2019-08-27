@@ -1,68 +1,56 @@
 package com.shop.Shopaholic.utilities;
 
-import java.math.BigInteger;
-import java.nio.charset.StandardCharsets;
+import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import static java.security.MessageDigest.getInstance;
-
 public class Password {
-    public static String encryptThisString(String input)
-    {
-        try {
-            // getInstance() method is called with algorithm SHA-1
-            MessageDigest md = getInstance("SHA-1");
 
-            // digest() method is called
-            // to calculate message digest of the input string
-            // returned as array of byte
-            byte[] messageDigest = md.digest(input.getBytes());
+    public static String hashPassword(String password) throws NoSuchAlgorithmException,
+            UnsupportedEncodingException {
 
-            // Convert byte array into signum representation
-            BigInteger no = new BigInteger(1, messageDigest);
+//        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//        String hashedPassword = passwordEncoder.encode(password);
+//        return hashedPassword;
+//        String password1 = password;
+//        //String salt = BCrypt.gensalt(4);
+//        String salt = "$2a$04$H4TQWhkOXTZr86Fczzjyde";
+//        System.out.println("salt === "+salt);
+//        String hashed_password = BCrypt.hashpw(password1, salt);
+//        System.out.println("hashed_password=="+hashed_password);
+//        return(hashed_password);
 
-            // Convert message digest into hex value
-            String hashtext = no.toString(16);
+        MessageDigest md = MessageDigest.getInstance("SHA-1");
+        md.update(password.getBytes("iso-8859-1"), 0, password.length());
+        byte[] sha1hash = md.digest();
 
-            // Add preceding 0s to make it 32 bit
-            while (hashtext.length() < 32) {
-                hashtext = "0" + hashtext;
-            }
-
-            // return the HashText
-            return hashtext;
-        }
-
-        // For specifying wrong message digest algorithms
-        catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
-        }
+        return convertToHex(sha1hash);
     }
 
-    public static String encryptThisStringWithSameSalt(String password) throws NoSuchAlgorithmException
-    {
-        //String password = "123456";
-
-        MessageDigest md = getInstance("SHA-1");
-        byte[] hashInBytes = md.digest(password.getBytes(StandardCharsets.UTF_8));
-
-        // bytes to hex
-        StringBuilder sb = new StringBuilder();
-        for (byte b : hashInBytes) {
-            sb.append(String.format("%02x", b));
-        }
-        //System.out.println(sb.toString());
-
-        return sb.toString();
-    }
-    public static boolean isPasswordMatching(String passwordEnteredByUser, String passwordFromDatabase) throws NoSuchAlgorithmException {
-        String hashPassword = encryptThisStringWithSameSalt(passwordEnteredByUser);
-        if(hashPassword.compareTo(passwordFromDatabase) != 0)
+    public static boolean isPasswordValid(String password_plaintext, String stored_hash) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+        String hashPassword = hashPassword(password_plaintext);
+        if(hashPassword.compareTo(stored_hash) != 0)
         {
             return false;
         }
         return true;
+//        boolean password_verified = false;
+//        password_verified = BCrypt.checkpw(password_plaintext, stored_hash);
+//        return(password_verified);
     }
 
+    private static String convertToHex(byte[] data) {
+        StringBuilder buf = new StringBuilder();
+        for (byte b : data) {
+            int halfbyte = (b >>> 4) & 0x0F;
+            int two_halfs = 0;
+            do {
+                buf.append((0 <= halfbyte) && (halfbyte <= 9) ? (char) ('0' + halfbyte)
+                        : (char) ('a' + (halfbyte - 10)));
+                halfbyte = b & 0x0F;
+            } while (two_halfs++ < 1);
+        }
+        System.out.println("=======>"+buf.toString());
+        return buf.toString();
+    }
 }

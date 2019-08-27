@@ -1,0 +1,1 @@
+ALTER TABLE shopaholic_user ADD UNIQUE (su_email);
