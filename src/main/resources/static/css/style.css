@@ -313,3 +313,8 @@ a:hover {
     color:#82ae46;
     vertical-align: top;
 }
+.error{
+    color: red;
+    margin: 20px;
+    font-size: 14px;
+}

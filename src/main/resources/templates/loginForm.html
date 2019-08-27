@@ -22,8 +22,9 @@
 <!-- END nav -->
 
 <section class="ftco-section" style="min-height: 550px;">
-    <span th:text="${errorMsg}"/>
+
     <form class="form"  th:action="@{/login}" th:object="${user}" method="post">
+        <span class="error" th:text="${errorMsg}"/>
         <div class="container">
 
             <table style="align:center">
