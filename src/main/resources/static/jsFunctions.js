@@ -66,3 +66,9 @@ function validateForm()
         return false;
     }
 }
+
+function setSelectedValue()
+{
+    var selectedCategoryId=document.getElementById("dropCategory");
+    document.getElementById("hdnCategory").value = selectedCategoryId.options[selectedCategoryId.selectedIndex].value;
+}

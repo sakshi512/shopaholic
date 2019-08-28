@@ -1,0 +1,1 @@
+ALTER TABLE product ALTER COLUMN p_image DROP NOT null;
