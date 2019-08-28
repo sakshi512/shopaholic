@@ -11,11 +11,27 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import javax.servlet.http.HttpSession;
 
 @Controller
 public class AdminProductController {
+
+    //Save the uploaded file to this folder
+    private static String UPLOADED_FOLDER = "/Users/anamsami/Desktop/Project/Shopaholic/src/main/resources/static/images/";
+
+
+///Users/anamsami/Desktop/Project/Shopaholic/src/main/resources/static/images/
+
+
     @Autowired
     private AdminProductService adminProductService;
 
@@ -24,34 +40,56 @@ public class AdminProductController {
 
     @GetMapping("/addproduct")
     public String adminFetchProductCategory(Model model) {
+
         ProductsEntity productsEntity = new ProductsEntity();
         model.addAttribute("productItem", productsEntity);
-
         CategoryEntity categoryEntity = new CategoryEntity();
         model.addAttribute("categories", adminProductService.findAllProductCategories());
+
 
         return "addproduct";
     }
 
     @PostMapping("/addproduct")
-    public String addProduct(@ModelAttribute("productItem") ProductsEntity productsEntity) throws Exception {
-        try
-        {
+    public String addProduct(@ModelAttribute("productItem") ProductsEntity productsEntity, @ModelAttribute MultipartFile file) {
 
-//            File file=new File(productsEntity.getProductImage());
-//            File renamedFile=new File("file.jpg");
-//            //System.out.println("Image"+productsEntity.getProductImage());
-//            file.renameTo(renamedFile);
-//            productsEntity.setProductImage(file);
+        if (file.isEmpty())
+        {
+            System.out.println("File not uploaded");
+            return "redirect:addproduct";
+        }
+
+        try {
+
+//            String fileName = productsEntity.getProductId()+".jpg";
+//
+//            byte[] bytes = file.getBytes();
+//            System.out.println("File Read");
+//
+//            //Path path = Paths.get(UPLOADED_FOLDER+file.getOriginalFilename());
+//            Path path = Paths.get(UPLOADED_FOLDER+fileName);
+//
+//            System.out.println("Path "+path);
+//            Files.write(path, bytes);
+//
+//            productsEntity.setProductImage(fileName);
+
+
+
+
             productsService.addProduct(productsEntity);
-//            httpSession.setAttribute("user",user);
-//            httpSession.setAttribute("loggedInUserId",user.getId());
+            productsService.saveImageFile(productsEntity,file);
+
+            System.out.println("File uploaded: " + file.getOriginalFilename());
 
         }
         catch (Exception e)
         {
-            System.out.println(ErrorCodes.SIGN_UP_CONTROLLER_INVALID_INPUT.getErrorDescription());
+            e.printStackTrace();
+
         }
+
+
         return "redirect:Success";
     }
 }
