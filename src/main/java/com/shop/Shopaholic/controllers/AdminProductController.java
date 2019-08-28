@@ -50,7 +50,7 @@ public class AdminProductController {
         }
         catch (Exception e)
         {
-            System.out.println(ErrorCodes.SIGN_UP_CONTROLLER.getErrorDescription());
+            System.out.println(ErrorCodes.SIGN_UP_CONTROLLER_INVALID_INPUT.getErrorDescription());
         }
         return "redirect:Success";
     }

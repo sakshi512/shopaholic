@@ -1,17 +1,15 @@
 /// Add a product to the Cart
-function addtoCart(userId, productId) {
-
+function addtoCart(userId, productId, price) {
+    var prevCount = parseInt(document.getElementById("cart").innerHTML);
+    var qty = prevCount + 1;
     var ajaxRequest = new XMLHttpRequest();
     ajaxRequest.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-           // alert(this.responseText);
 
-            var prevCount = parseInt(document.getElementById("cart").innerHTML);
-            prevCount += 1;
-            document.getElementById("cart").innerHTML = prevCount.toString();
+            document.getElementById("cart").innerHTML = qty.toString();
         }
     };
-    ajaxRequest.open("GET", "/api/addCart?productId="+productId+"&userId="+userId, true);
+    ajaxRequest.open("GET", "/api/addCart?productId="+productId+"&userId="+userId+"&qty="+qty+"&price="+price, true);
     ajaxRequest.send();
 
 }
