@@ -22,16 +22,13 @@ public class CartRestController {
     public String addProductToCart(@RequestParam String productId,@RequestParam String userId, @RequestParam Integer qty, @RequestParam Float price) throws Exception
     {
 
-       try {
+        String result="";
+        try {
            OrderEntity orderObj = new OrderEntity();
 
-           Float totalPrice = qty * price;
+           //Float totalPrice = qty * price;
+           Float totalPrice = price;
            String status = "In-Cart";
-           //check if product already exist
-           // done checking
-           //OrderEntity obj1 =
-
-           // select * from orders where o_p_id = productId and o_su_id = userId and status = 'In_car'
 
            orderObj.setProductId(Integer.parseInt(productId));
            orderObj.setUserId(Integer.parseInt(userId));
@@ -39,15 +36,16 @@ public class CartRestController {
            orderObj.setOrderQty(qty);
            orderObj.setStatus(status);
 
-           //orderRepository.save(orderObj);
-           orderService.addProductToCart(orderObj);
+
+          result = orderService.addProductToCart(orderObj);
 
 
        }catch (Exception e)
        {
            System.out.println(ErrorCodes.CART_CONTROLLER.getErrorDescription());
        }
-        return "Product:" + productId + " User:" + userId;
+        //return "Product:" + productId + " User:" + userId;
+       return  result;
     }
 
     @RequestMapping(value = "/api/delCart")

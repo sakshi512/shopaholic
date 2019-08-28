@@ -16,15 +16,19 @@ public class OrderService {
     @Autowired
     private OrderRepository orderRepository;
 
-    public void addProductToCart(OrderEntity objOrderEntity)
+    public String addProductToCart(OrderEntity objOrderEntity)
     {
+        String msg;
         OrderEntity objC =  orderRepository.findCartProduct(objOrderEntity.getProductId(), objOrderEntity.getUserId(),objOrderEntity.getStatus());
         if(objC != null)
         {
-            orderRepository.save(objC);
+            //orderRepository.save(objC);
+            msg ="F";
         }else{
+            msg ="S";
             orderRepository.save(objOrderEntity);
         }
+        return msg;
     }
 
     public List<OrderEntity> findAllCartItem() {

@@ -38,7 +38,7 @@ public class IndexController {
          UserEntity loggedInUser = (UserEntity) httpSession.getAttribute("user");
          if(loggedInUser != null)
          {
-             System.out.println("Total Item: "+orderService.countUserCart(loggedInUser.getId()));
+             //System.out.println("Total Item: "+orderService.countUserCart(loggedInUser.getId()));
              model.addAttribute("totalCartItem",orderService.countUserCart(loggedInUser.getId()));
          }else{
              model.addAttribute("totalCartItem",0);

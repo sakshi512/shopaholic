@@ -6,10 +6,16 @@ function addtoCart(userId, productId, price) {
     ajaxRequest.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
 
-            document.getElementById("cart").innerHTML = qty.toString();
+            if (this.responseText == "F") {
+                alert("This product is already in your cart");
+            } else {
+                document.getElementById("cart").innerHTML = qty.toString();
+            }
+
+
         }
     };
-    ajaxRequest.open("GET", "/api/addCart?productId="+productId+"&userId="+userId+"&qty="+qty+"&price="+price, true);
+    ajaxRequest.open("GET", "/api/addCart?productId="+productId+"&userId="+userId+"&qty=1&price="+price, true);
     ajaxRequest.send();
 
 }
