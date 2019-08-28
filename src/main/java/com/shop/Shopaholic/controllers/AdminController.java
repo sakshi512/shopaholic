@@ -1,29 +1,23 @@
 package com.shop.Shopaholic.controllers;
 import com.shop.Shopaholic.entities.CategoryEntity;
 import com.shop.Shopaholic.entities.ProductsEntity;
-import com.shop.Shopaholic.entities.UserEntity;
-import com.shop.Shopaholic.services.AdminProductService;
+import com.shop.Shopaholic.services.AdminService;
 import com.shop.Shopaholic.services.ProductsService;
-import com.shop.Shopaholic.utilities.ErrorCodes;
+import com.shop.Shopaholic.utilities.Email;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import javax.servlet.http.HttpSession;
+import javax.mail.MessagingException;
 
 @Controller
-public class AdminProductController {
+public class AdminController {
 
     //Save the uploaded file to this folder
     private static String UPLOADED_FOLDER = "/Users/anamsami/Desktop/Project/Shopaholic/src/main/resources/static/images/";
@@ -33,7 +27,7 @@ public class AdminProductController {
 
 
     @Autowired
-    private AdminProductService adminProductService;
+    private AdminService adminService;
 
     @Autowired
     private ProductsService productsService;
@@ -44,7 +38,7 @@ public class AdminProductController {
         ProductsEntity productsEntity = new ProductsEntity();
         model.addAttribute("productItem", productsEntity);
         CategoryEntity categoryEntity = new CategoryEntity();
-        model.addAttribute("categories", adminProductService.findAllProductCategories());
+        model.addAttribute("categories", adminService.findAllProductCategories());
 
 
         return "addproduct";
@@ -91,5 +85,23 @@ public class AdminProductController {
 
 
         return "redirect:Success";
+    }
+
+    @GetMapping("/admin")
+    public String getAdminHomePage(){
+        return "admin";
+    }
+
+    @GetMapping("/sendMail")
+    public String sendMail(RedirectAttributes attributes) throws MessagingException, IOException {
+        Email email = new Email();
+        email.sendImage();
+        attributes.addFlashAttribute("message","Email Sent!!");
+        return "redirect:admin";
+    }
+
+    @GetMapping("/email")
+    public String getEmailPage(){
+        return "email_order_summary";
     }
 }

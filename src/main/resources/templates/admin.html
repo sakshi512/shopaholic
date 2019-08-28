@@ -22,7 +22,9 @@
 </div>
 <div class="container" style="min-height: 550px;">
    <h1>Welcome Admin - <span th:text="${session.admin.getFirstName()}"/> </h1>
+    <span class="error" th:text="${message}"/>
    <form th:action="@{/logout}" method="get">
+       <input type="button" onclick="location.href='/sendMail'" value="SendMail" />
        <input type="submit" value="Logout"/>
    </form>
 </div>

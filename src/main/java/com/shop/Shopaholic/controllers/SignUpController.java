@@ -32,7 +32,6 @@ public class SignUpController
         try {
             signupService.addUser(user);
             httpSession.setAttribute("user",user);
-            httpSession.setAttribute("loggedInUserId",user.getId());
         }
         catch (Exception e)
         {

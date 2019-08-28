@@ -7,7 +7,6 @@
 </head>
 
 <body>
-<span text="${user == null}"/>
 
 <div th:replace="${user == null} ? ~{/header::header} : ~{/headerLoggedIn::headerLoggedIn}"></div>
 

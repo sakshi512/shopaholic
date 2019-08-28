@@ -49,11 +49,6 @@ public class LoginController {
 
     }
 
-    @GetMapping("/admin")
-    public String getAdminHomePage(){
-        return "admin";
-    }
-
     @GetMapping("/logout")
     public String doUserLogout(HttpSession httpSession){
         if (httpSession != null) {

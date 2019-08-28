@@ -7,7 +7,7 @@ import com.shop.Shopaholic.entities.UserEntity;
 import java.util.List;
 
 
-public interface AdminProductService
+public interface AdminService
 {
     public List<CategoryEntity> findAllProductCategories();
 
