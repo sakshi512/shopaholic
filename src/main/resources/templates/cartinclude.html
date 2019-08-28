@@ -11,7 +11,7 @@
         <div class="cart">
 
 
-            <a th:href="${user == null} ? '#' : '/cart'"> <img th:src="@{/images/cart.png}" /><span id="cart" >0</span></a>
+            <a th:href="${user == null} ? '#' : '/cart'"> <img th:src="@{/images/cart.png}" /><span id="cart" th:text="${totalCartItem}" >0</span></a>
 
         </div>
     </div>

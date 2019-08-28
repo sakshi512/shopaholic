@@ -14,17 +14,22 @@ function addtoCart(userId, productId, price) {
 
 }
 /// delete cart item
-function deleteCart(cartId)
-{
-    var ajaxRequest = new XMLHttpRequest();
-    ajaxRequest.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
+function deleteCart(cartId) {
 
-            window.location.reload();
-        }
-    };
-    ajaxRequest.open("GET", "/api/delCart?cartId="+cartId, true);
-    ajaxRequest.send();
+    var userResponse = confirm('Are you sure you want to Remove?');
+    if (userResponse) {
+        var ajaxRequest = new XMLHttpRequest();
+        ajaxRequest.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+
+                window.location.reload();
+            }
+        };
+        ajaxRequest.open("GET", "/api/delCart?cartId=" + cartId, true);
+         ajaxRequest.send();
+    } else {
+
+    }
 }
 
 

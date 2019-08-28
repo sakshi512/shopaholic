@@ -36,4 +36,12 @@ public class OrderService {
     {
         orderRepository.deleteById(cartId);
     }
+
+    public Integer countUserCart(Integer userId)
+    {
+        Integer totalCartItem = 0;
+        List<OrderEntity> orderEntityList = orderRepository.userCartCount(userId);
+        totalCartItem = orderEntityList.size();
+        return totalCartItem;
+    }
 }

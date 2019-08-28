@@ -1,6 +1,7 @@
 package com.shop.Shopaholic.controllers;
 
 import com.shop.Shopaholic.entities.OrderEntity;
+import com.shop.Shopaholic.entities.UserEntity;
 import com.shop.Shopaholic.services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,7 +20,8 @@ public class CartController {
     @GetMapping("/cart")
     public String cart(Model model, HttpSession httpSession)
     {
-       // if (httpSession == null) {
+        UserEntity loggedInUser = (UserEntity) httpSession.getAttribute("user");
+        // if (loggedInUser == null) {
        //     return "redirect:index";
         //}
         model.addAttribute("cartItems",orderService.findAllCartItem());
