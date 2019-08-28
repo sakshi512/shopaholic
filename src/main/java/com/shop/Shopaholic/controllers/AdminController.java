@@ -19,12 +19,6 @@ import javax.mail.MessagingException;
 @Controller
 public class AdminController {
 
-    //Save the uploaded file to this folder
-    private static String UPLOADED_FOLDER = "/Users/anamsami/Desktop/Project/Shopaholic/src/main/resources/static/images/";
-
-
-///Users/anamsami/Desktop/Project/Shopaholic/src/main/resources/static/images/
-
 
     @Autowired
     private AdminService adminService;
@@ -39,8 +33,6 @@ public class AdminController {
         model.addAttribute("productItem", productsEntity);
         CategoryEntity categoryEntity = new CategoryEntity();
         model.addAttribute("categories", adminService.findAllProductCategories());
-
-
         return "addproduct";
     }
 
@@ -54,36 +46,14 @@ public class AdminController {
         }
 
         try {
-
-//            String fileName = productsEntity.getProductId()+".jpg";
-//
-//            byte[] bytes = file.getBytes();
-//            System.out.println("File Read");
-//
-//            //Path path = Paths.get(UPLOADED_FOLDER+file.getOriginalFilename());
-//            Path path = Paths.get(UPLOADED_FOLDER+fileName);
-//
-//            System.out.println("Path "+path);
-//            Files.write(path, bytes);
-//
-//            productsEntity.setProductImage(fileName);
-
-
-
-
             productsService.addProduct(productsEntity);
             productsService.saveImageFile(productsEntity,file);
-
             System.out.println("File uploaded: " + file.getOriginalFilename());
-
         }
         catch (Exception e)
         {
             e.printStackTrace();
-
         }
-
-
         return "redirect:Success";
     }
 
