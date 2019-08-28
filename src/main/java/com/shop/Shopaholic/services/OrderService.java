@@ -1,12 +1,14 @@
 package com.shop.Shopaholic.services;
 
 import com.shop.Shopaholic.entities.OrderEntity;
+import com.shop.Shopaholic.entities.ProductsEntity;
 import com.shop.Shopaholic.entities.UserEntity;
 import com.shop.Shopaholic.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.validation.constraints.Null;
+import java.util.List;
 
 @Service
 public class OrderService {
@@ -20,10 +22,18 @@ public class OrderService {
         if(objC != null)
         {
             orderRepository.save(objC);
-            //System.out.println("Cart updated: "+objC.getId());
         }else{
             orderRepository.save(objOrderEntity);
-           // System.out.println("New Cart: ");
         }
+    }
+
+    public List<OrderEntity> findAllCartItem() {
+
+        return orderRepository.findAll();
+    }
+
+    public void deleteCartItem(Integer cartId)
+    {
+        orderRepository.deleteById(cartId);
     }
 }

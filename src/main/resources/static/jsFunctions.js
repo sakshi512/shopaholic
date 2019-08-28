@@ -13,6 +13,20 @@ function addtoCart(userId, productId, price) {
     ajaxRequest.send();
 
 }
+/// delete cart item
+function deleteCart(cartId)
+{
+    var ajaxRequest = new XMLHttpRequest();
+    ajaxRequest.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+
+            window.location.reload();
+        }
+    };
+    ajaxRequest.open("GET", "/api/delCart?cartId="+cartId, true);
+    ajaxRequest.send();
+}
+
 
 function validateForm()
 {

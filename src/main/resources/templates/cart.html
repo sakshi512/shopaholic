@@ -16,9 +16,38 @@
 <section class="ftco-section" style="min-height: 550px;">
     <div class="container">
         <div class="row">
-            <h1>Cart Page!</h1>
+
+            <div style="width: 80%; border: 1px solid #82ae46; margin: auto;">
+                <table cellpadding="5" cellspacing="1" width="80%" border="0" align="center">
+                <tr>
+                    <th width="5%">Sn.</th>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th width="5%">&nbsp;</th>
+                    <th width="15%">&nbsp;</th>
+                </tr>
+                <tr th:each="item, iterStat: ${cartItems}" th:class="${iterStat.odd}? 'odd': 'even'">
+                    <td th:text="${iterStat.index +1}">&nbsp;</td>
+                    <td th:text="${item.getProductId()}">Product1</td>
+                    <td th:text="${item.getTotalPrice()}">price</td>
+                    <td > <input type="text" readonly maxlength="2" name="qty" id="qty" style="width: 20px" th:value="${item.getOrderQty()}"></td>
+                    <td ><!--<img th:src="@{/images/update.png}"  width="16" style="cursor: pointer; " /> &nbsp;-->
+                        <img th:src="@{/images/delete.png}" width="16" th:onclick="'javascript:deleteCart(\'' + ${item.getId()} + '\')'" style="cursor: pointer; "/>  </td>
+                </tr>
+                    <!--<tr>
+                        <td colspan="4" align="right">Total Price:</td>
+                        <td></td>
+                      -->
+                    </tr>
+                    <tr>
+                        <td colspan="5" align="right"><input type="button" value="Checkout"></td>
+
+                    </tr>
+            </table>
+
+
         </div>
-    </div>
+
 </section>
 
 <div th:replace="/footer::footer"></div>

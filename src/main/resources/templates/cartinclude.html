@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thyleaf.org">
+<head>
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar" th:fragment="cartinclude">
+    <div class="container">
+        <a class="navbar-brand" href="/index">ShopaHolic</a>
+
+        <div class="cart">
+
+
+            <a th:href="${user == null} ? '#' : '/cart'"> <img th:src="@{/images/cart.png}" /><span id="cart" >0</span></a>
+
+        </div>
+    </div>
+</nav>
+</body>
+</html>

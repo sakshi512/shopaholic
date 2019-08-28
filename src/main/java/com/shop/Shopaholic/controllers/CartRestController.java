@@ -49,4 +49,18 @@ public class CartRestController {
        }
         return "Product:" + productId + " User:" + userId;
     }
+
+    @RequestMapping(value = "/api/delCart")
+    public String deleteCart(@RequestParam String cartId)
+    {
+        String msg;
+        try {
+            orderService.deleteCartItem(Integer.parseInt(cartId));
+            msg= "Success";
+        }catch (Exception e)
+        {
+            System.out.println(ErrorCodes.CART_CONTROLLER.getErrorDescription());
+        }
+        return msg= "Error";
+    }
 }

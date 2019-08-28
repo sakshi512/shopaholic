@@ -11,4 +11,5 @@ public interface OrderRepository extends JpaRepository<OrderEntity,Integer> {
 
     @Query("FROM OrderEntity WHERE productId = ?1 AND userId=?2 AND o_status=?3")
     OrderEntity findCartProduct(Integer productId, Integer userId, String status);
+
 }
