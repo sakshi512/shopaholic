@@ -48,11 +48,11 @@
                         </td>
                     </tr>
                     <tr><td><input type="hidden" id="hdnCategory" th:field="${productItem.productCategoryId}"> </td></tr>
-                    <tr><td><label>Product Name</label></td><td><input type="text" th:field="${productItem.productName}" maxlength="10" required> </td></tr>
-                    <tr><td><label>Product Description</label></td><td><input type="text" th:field="${productItem.productDescription}" maxlength="50" required></td></tr>
-                    <tr><td><label>Product Price</label></td><td><input type="text" th:field="${productItem.productPrice}" maxlength="50" required></td></tr>
-                    <tr><td><label>Product Image</label></td><td><input type="file" name="file" value="imageUpload" id="imageUpload" ></td></tr>
-                    <tr><td><label>Product Color</label></td><td><input type="text" th:field="${productItem.productColor}"></td>
+                    <tr><td><label>Product Name *</label></td><td><input type="text" th:field="${productItem.productName}" maxlength="10" required> </td></tr>
+                    <tr><td><label>Product Description *</label></td><td><input type="text" th:field="${productItem.productDescription}" maxlength="50" required></td></tr>
+                    <tr><td><label>Product Price *</label></td><td><input type="text" th:field="${productItem.productPrice}" maxlength="15" required></td></tr>
+                    <tr><td><label>Product Image</label></td><td><input type="file" name="file" value="imageUpload" id="imageUpload"></td></tr>
+                    <tr><td><label>Product Color *</label></td><td><input type="text" th:field="${productItem.productColor}" maxlength="30" required></td>
                     <tr><td colspan="2"><button name="btnAddProduct" type="submit" value="1">Add Product</button></td></tr>
                 </table>
             </form>
