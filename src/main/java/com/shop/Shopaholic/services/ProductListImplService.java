@@ -20,9 +20,9 @@ import java.util.Optional;
 public class ProductListImplService implements ProductsService {
 
     //Save the uploaded file to this folder
-   // private static String UPLOADED_FOLDER = "/Users/anamsami/Desktop/Project/Shopaholic/src/main/resources/static/images/";
+   private static String UPLOADED_FOLDER = "/Users/anamsami/Desktop/Project/Shopaholic/src/main/resources/static/images/";
 
-    private static String UPLOADED_FOLDER = System.getProperty("user.home")+ "/ShopaholicProductImages/";
+    //private static String UPLOADED_FOLDER = System.getProperty("user.home")+ "/ShopaholicProductImages/";
 
 
     @Autowired
