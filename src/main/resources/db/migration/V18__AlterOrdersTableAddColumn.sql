@@ -1,0 +1,1 @@
+ALTER TABLE orders add COLUMN p_name varchar(50);
