@@ -46,7 +46,6 @@ public class LoginController {
             httpSession.setAttribute("user",loggedInUser);
             return "redirect:index";
         }
-
     }
 
     @GetMapping("/logout")

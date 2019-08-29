@@ -30,7 +30,17 @@ public class OrderEntity {
     @Column(name="o_status")
     private String status;
 
+    @Column(name="p_name")
+    private String productName;
 
+    public String getProductName()
+    {
+        return productName;
+    }
+    public void setProductName(String productName)
+    {
+        this.productName = productName;
+    }
 
     public Integer getProductId() {
         return productId;
@@ -81,5 +91,6 @@ public class OrderEntity {
     public void setUserId(Integer userId) {
         this.userId = userId;
     }
+
 
 }

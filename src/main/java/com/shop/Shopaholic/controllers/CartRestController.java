@@ -1,8 +1,10 @@
 package com.shop.Shopaholic.controllers;
 
 import com.shop.Shopaholic.entities.OrderEntity;
+import com.shop.Shopaholic.entities.ProductsEntity;
 import com.shop.Shopaholic.repository.OrderRepository;
 import com.shop.Shopaholic.services.OrderService;
+import com.shop.Shopaholic.services.ProductListImplService;
 import com.shop.Shopaholic.utilities.ErrorCodes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Optional;
+
 @RestController
 
 public class CartRestController {
@@ -18,12 +22,18 @@ public class CartRestController {
     @Autowired
     OrderService orderService;
 
+    @Autowired
+    ProductListImplService productListImplService;
+
     @RequestMapping(value = "/api/addCart")
     public String addProductToCart(@RequestParam String productId,@RequestParam String userId, @RequestParam Integer qty, @RequestParam Float price) throws Exception
     {
 
         String result="";
         try {
+
+            Optional<ProductsEntity> productsEntity = productListImplService.findProductbyId(Integer.parseInt(productId));
+
            OrderEntity orderObj = new OrderEntity();
 
            //Float totalPrice = qty * price;
@@ -35,6 +45,7 @@ public class CartRestController {
            orderObj.setTotalPrice(totalPrice);
            orderObj.setOrderQty(qty);
            orderObj.setStatus(status);
+           orderObj.setProductName(productsEntity.get().getProductName());
 
 
           result = orderService.addProductToCart(orderObj);

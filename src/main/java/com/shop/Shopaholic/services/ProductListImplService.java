@@ -14,6 +14,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductListImplService implements ProductsService {
@@ -22,7 +23,6 @@ public class ProductListImplService implements ProductsService {
    // private static String UPLOADED_FOLDER = "/Users/anamsami/Desktop/Project/Shopaholic/src/main/resources/static/images/";
 
     private static String UPLOADED_FOLDER = System.getProperty("user.home")+ "/ShopaholicProductImages/";
-
 
 
     @Autowired
@@ -60,11 +60,8 @@ public class ProductListImplService implements ProductsService {
 
         Path dir = Paths.get(UPLOADED_FOLDER);
 
-
-
         if (!Files.exists(dir))
         {
-
             Files.createDirectories(dir);
 
         }
@@ -83,4 +80,8 @@ public class ProductListImplService implements ProductsService {
 
     }
 
+    public Optional<ProductsEntity> findProductbyId(int productId)
+    {
+        return productRepository.findById(productId);
+    }
 }

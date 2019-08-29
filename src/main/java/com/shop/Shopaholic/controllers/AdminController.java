@@ -15,10 +15,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
 import javax.mail.MessagingException;
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class AdminController {
-
 
     @Autowired
     private AdminService adminService;
@@ -54,13 +54,14 @@ public class AdminController {
         {
             e.printStackTrace();
         }
-        return "redirect:Success";
+        return "redirect:admin";
     }
 
     @GetMapping("/admin")
     public String getAdminHomePage(){
         return "admin";
     }
+
 
     @GetMapping("/sendMail")
     public String sendMail(RedirectAttributes attributes) throws MessagingException, IOException {

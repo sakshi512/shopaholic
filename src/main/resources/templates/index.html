@@ -25,7 +25,8 @@
 					<div class="text py-3 pb-4 px-3 text-center">
 
 
-						<img  th:src="@{${'/images/' + product.getProductImage() }}" width="90" height="90" alt="No Image Available">
+					<img th:src="@{${'/images/' + product.getProductImage() }}" width="90" height="90" alt="No Image Available">
+
 						<h3><a href="#" th:text="${product.getProductName()}">ProductName</a></h3>
 						<div class="d-flex">
 							<div class="pricing">
@@ -33,7 +34,8 @@
 							</div>
 						</div>
 						<div >
-							<button th:if="${user != null}"  th:onclick="'javascript:addtoCart(\'' + ${session.user.getId()} + '\',\'' + ${product.getProductId()} + '\',\'' + ${product.getProductPrice()} + '\' );'">Buy</button>
+<!--							<button th:if="${user != null}"  th:onclick="'javascript:addtoCart(\'' + ${session.user.getId()} + '\',\'' + ${product.getProductId()} + '\',\'' + ${product.getProductPrice()} + '\', \'' + ${product.getProductName()} + '\' );'">Buy</button>-->
+							<button th:if="${user != null}"  th:onclick="'javascript:addtoCart(\'' + ${session.user.getId()} + '\',\'' + ${product.getProductId()} + '\',\'' + ${product.getProductPrice()} + '\');'">Buy</button>
 
                         </div>
 					</div>

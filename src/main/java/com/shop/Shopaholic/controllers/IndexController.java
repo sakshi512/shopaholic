@@ -26,6 +26,7 @@ public class IndexController {
         this.orderService = orderService;
     }
 
+    private static String UPLOADED_FOLDER = System.getProperty("user.home")+ "/ShopaholicProductImages/";
 //    @Autowired
 //    public IndexController(ProductListImplService productListImplService, ) {
 //        this.productListImplService = productListImplService;
@@ -34,22 +35,22 @@ public class IndexController {
      @GetMapping("/index")
      public String getHomePage(Model model, HttpSession httpSession) {
         model.addAttribute("products",productListImplService.findAllProducts());
+        model.addAttribute("imagepath", UPLOADED_FOLDER);
         // get cart count
          UserEntity loggedInUser = (UserEntity) httpSession.getAttribute("user");
          if(loggedInUser != null)
          {
              //System.out.println("Total Item: "+orderService.countUserCart(loggedInUser.getId()));
              model.addAttribute("totalCartItem",orderService.countUserCart(loggedInUser.getId()));
-         }else{
+         }
+         else
+             {
              model.addAttribute("totalCartItem",0);
          }
-
-
 
          return "index";
 
      }
-
 
 //    @GetMapping("/showProductList")
 //    public List<ProductsEntity> findAll() {
