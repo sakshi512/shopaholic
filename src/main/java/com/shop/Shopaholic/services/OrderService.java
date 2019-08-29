@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.validation.constraints.Null;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -48,4 +50,22 @@ public class OrderService {
         totalCartItem = orderEntityList.size();
         return totalCartItem;
     }
+
+    public double findCartTotal(Integer userId) {
+        Double totalPrice;
+        totalPrice = orderRepository.getCartTotal(userId);
+        return totalPrice;
+    }
+
+    public void updateOrderStatusAndDate(String status, Date date, Integer userId) {
+        orderRepository.updateOrderStatusAndDate(status,date,userId);
+    }
+
+    public List<OrderEntity> findCartItemWithUser(Integer userId) {
+        return orderRepository.findCartItemWithUser(userId);
+    }
+
+//    public void updateOrderDate(String status, Integer userId, Date date) {
+//        orderRepository.updateOrderDate(status,userId,date);
+//    }
 }

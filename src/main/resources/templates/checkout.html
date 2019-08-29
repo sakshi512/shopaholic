@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thyleaf.org">
+<title>ShopaHolic|Shopping portal</title>
+<link th:href="@{/css/style.css}" rel="stylesheet"/>
+<script src="jsFunctions.js"></script>
+
+<body>
+<div th:replace="/headerLoggedIn::headerLoggedIn"></div>
+
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+    <div class="container">
+        <a class="navbar-brand" href="./index">ShopaHolic</a>
+    </div>
+</nav>
+<!-- END nav -->
+<section class="ftco-section" style="min-height: 550px;">
+    <div class="container">
+        <div class="row">
+
+            <div style="width: 80%; border: 1px solid #82ae46; margin: auto;">
+                <table cellpadding="5" cellspacing="1" width="80%" border="0" align="center">
+                    <tr class="odd"><td width="5%">Order Placed Successfully!!</td><td><td></td><td></td></tr>
+                    <tr class="even"><td width="5%">Order Summary:</td><td></td><td></td><td></td></tr>
+                    <tr class="odd">
+                        <th >Sn.</th>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Qty</th>
+                    </tr>
+                    <tr class="even" th:each="item, iterStat: ${cartItems}" th:class="${iterStat.odd}? 'odd': 'even'">
+                        <td th:text="${iterStat.index +1}">&nbsp;</td>
+                        <td th:text="${item.getProductId()}"></td>
+                        <td th:text="${item.getTotalPrice()}"></td>
+                        <td th:text="${item.getOrderQty()}"></td>
+                    </tr>
+                    <tr class="odd">
+                    <td><label>Cart Total</label></td>
+                    <td><p th:text="${cartTotal}"></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="even">
+                        <td><label>Name</label></td>
+                        <td><p th:text="${user.getFirstName()+ ' ' +user.getLastName() }"></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="odd">
+                        <td><label>Address Line 1</label></td>
+                        <td><p th:text="${user.getAddressLine1()}"></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="even">
+                        <td><label>Address Line 2</label></td>
+                        <td><p th:text="${user.getAddressLine2()}"></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="odd">
+                        <td><label>City</label></td>
+                        <td><p th:text="${user.getCity()}"></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="even">
+                        <td><label>Pin</label></td>
+                        <td><p th:text="${user.getPin()}"></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="odd">
+                        <td><label>Phone Number</label></td>
+                        <td><p th:text="${user.getPhone()}"></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>
