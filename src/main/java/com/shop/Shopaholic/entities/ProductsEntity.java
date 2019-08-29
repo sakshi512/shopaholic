@@ -16,7 +16,7 @@ public class ProductsEntity {
     private int productCategoryId;
 
     @Column(name = "p_name")
-    private String productName;git
+    private String productName;
 
     @Column(name = "p_description")
     private String productDescription;
